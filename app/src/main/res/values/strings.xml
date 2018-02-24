@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Inventory App</string>
+    <string name="productName">Enter Product Name..</string>
+    <string name="productPrice">Enter Product Price..</string>
+    <string name="productQuantity">Enter Product Quantity..</string>
+    <string name="supplierName">Enter Supplier Name..</string>
+    <string name="supplierPhone">Enter Supplier Phone..</string>
+    <string name="addToInventory">Save</string>
+    <string name="viewResult">Show All Inventory</string>
+    <string name="error">You must Enter a Value!</string>
+    <string name="successmsg">Product Added Successfully</string>
+    <string name="failedmsg">Failed to Add the Product</string>
+    <string name="errormsg">No Products</string>
+    <string name="errormsg2">Press the Add Button to add new Product</string>
+    <string name="placeholder">Place Holder</string>
+    <string name="saleBtn">Sale</string>
+    <string name="delete_the_product">Delete all products</string>
+    <string name="call_supplier">Call Supplier</string>
+    <string name="add_product">Add Product</string>
+    <string name="edit_product">Update Product</string>
+    <string name="insert_product_failed">Failed to insert new product</string>
+    <string name="insert_product_success">New product Added Successfully</string>
+    <string name="update_product_failed">Failed to update product</string>
+    <string name="update_product_success">Product updated successfully</string>
+    <string name="delete_product_failed">Failed to Delete product</string>
+    <string name="delete_product_success">Product deleted successfully</string>
+    <string name="negativeQuantity">Quantity Can\'t be negative value</string>
+    <string name="negativePrice">Price Can\'t be negative value</string>
+    <string name="mustenterdata">You must enter data</string>
+    <string name="noactivity">yourActivity is not founded</string>
+    <string name="pricemissing">product price is missing</string>
+    <string name="supplierphonemissing">supplier Phone is missing</string>
+    <string name="suppliernameemissing">supplier name is missing</string>
+    <string name="productnamemissing">product name is missing</string>
+    <string name="productpricemissing">product price is missing</string>
+    <string name="productquantitymissing">product quantity is missing</string>
+    <string name="failedupdate">Updating isn\'t supported here for </string>
+    <string name="deleteunsupported">Deleting is not supported here for </string>
+    <string name="failedtoinsert">It is failed to insert a row for </string>
+    <string name="cantquery">Cannot query because it is unknown URI </string>
+
+</resources>

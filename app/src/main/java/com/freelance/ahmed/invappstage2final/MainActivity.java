@@ -3,10 +3,12 @@ package com.freelance.ahmed.invappstage2final;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,7 +63,24 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_all:
-                deleteAllProducts();
+                //////////////
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setTitle("Delete All Products !?");
+                alert.setIcon(R.drawable.cart);
+                alert.setMessage("You are about to delete all inventory products, are you sure you want to delete them ?");
+                alert.setPositiveButton("Delete All", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        deleteAllProducts();
+                    }
+                });
+                alert.setNeutralButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                alert.show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

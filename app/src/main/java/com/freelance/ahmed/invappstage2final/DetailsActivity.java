@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.net.Uri;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -38,6 +40,7 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
     private Button increment;
     private Button decrement;
     int quantityByButtons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +82,7 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
                 // saving method
                 if (validateData()) {
                     saveProduct();
+                    finish();
                     productName.setText("");
                     productPrice.setText("");
                     productQuantity.setText("");
@@ -226,18 +230,35 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
         switch (item.getItemId()) {
             case R.id.delete_all:
                 if (mCurrentProductUri != null) {
-                    int rowsDeleted = getContentResolver().delete(mCurrentProductUri, null, null);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(DetailsActivity.this);
+                    alert.setTitle("Delete Product!?");
+                    alert.setIcon(R.drawable.cart);
+                    alert.setMessage("are you sure that you want to delete this Product ?");
+                    alert.setPositiveButton("Yes, Delete", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            int rowsDeleted = getContentResolver().delete(mCurrentProductUri, null, null);
 
-                    if (rowsDeleted == 0) {
-                        Toast.makeText(this, getString(R.string.delete_product_failed),
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, getString(R.string.delete_product_success),
-                                Toast.LENGTH_SHORT).show();
-                    }
+                            if (rowsDeleted == 0) {
+                                Toast.makeText(getApplicationContext(), getString(R.string.delete_product_failed),
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), getString(R.string.delete_product_success),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            finish();
+
+                        }
+                    });
+                    alert.setNeutralButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                    alert.show();
                 }
-
-                finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -296,6 +317,7 @@ public class DetailsActivity extends AppCompatActivity implements LoaderManager.
         supplierPhone.setText("");
 
     }
+
     public void IncQuantity() {
         quantityByButtons = Integer.valueOf(productQuantity.getText().toString().trim());
         quantityByButtons = quantityByButtons + 1;
